@@ -23,7 +23,9 @@
 
 (function() {
     'use strict';
-let lastActive = null;
+
+
+var lastActive = null;
 document.addEventListener('focusin', e => {
     if (e.target.matches('input:not([disabled]):not([readonly]), textarea:not([disabled]):not([readonly]), [contenteditable="true"]')) {
         lastActive = e.target;
@@ -104,8 +106,8 @@ function fillInputUniversal(el, text) {
 
 function pressKey(inputBox, keyName) {
     // 如果 keyName 是单字符，比如 "a"，就自动补充 code 和 keyCode
-    let code = keyName.length === 1 ? `Key${keyName.toUpperCase()}` : keyName;
-    let keyCode = keyName.length === 1 ? keyName.toUpperCase().charCodeAt(0) : 0;
+    var code = keyName.length === 1 ? `Key${keyName.toUpperCase()}` : keyName;
+    var keyCode = keyName.length === 1 ? keyName.toUpperCase().charCodeAt(0) : 0;
 
     const eventOptions = {
         bubbles: true,
@@ -126,7 +128,7 @@ function pressKey(inputBox, keyName) {
 function waitForButtonAndSend(inputBox, sendButtonSelector, timeout = 1000) {
     const start = Date.now();
     const timer = setInterval(() => {
-        let btn = sendButtonSelector ? document.querySelector(sendButtonSelector) : null;
+        var btn = sendButtonSelector ? document.querySelector(sendButtonSelector) : null;
         if (!btn) {
             btn = document.querySelector(
                 'button[type="submit"]:not([disabled]), button[aria-label*="Send"]:not([disabled]), ' +
@@ -146,9 +148,9 @@ function waitForButtonAndSend(inputBox, sendButtonSelector, timeout = 1000) {
 
 function autoFillAndSend(textToSend, selectorInfo) {
     const findAndFill = () => {
-        let inputBox = null;
-        let sendButtonSelector = null;
-        let usedSelectorType = null;
+        var inputBox = null;
+        var sendButtonSelector = null;
+        var usedSelectorType = null;
 
         // 1️⃣ 优先用 selectorInfo
         if (selectorInfo && selectorInfo.inputBoxSelector) {
@@ -192,8 +194,6 @@ function autoFillAndSend(textToSend, selectorInfo) {
     };
 
     const checkInterval = setInterval(findAndFill, 500);
-}
-
 
     // === 修改这里的文本 ===
     autoFillAndSend("励志电视剧，2000年以前");
